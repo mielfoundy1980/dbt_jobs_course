@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: jobs_src
+    database: jobs
+    schema: main
+    tables:
+      - name: job_postings
+      - name: top_locations
+      - name: jobs_per_month
+      - name: monthly_summary
