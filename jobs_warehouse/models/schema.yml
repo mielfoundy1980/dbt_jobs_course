@@ -1,0 +1,72 @@
+models:
+  - name: job_postings
+    description: Cleaned and standardized job postings extracted from raw Parquet files (excluding error rows).
+    config:
+      persist_docs:
+        relation: true
+        columns: true
+    columns:
+      - name: job_id
+        description: The scraper's unique posting identifier.
+        data_tests:
+          - unique
+          - not_null
+      - name: job_title
+        description: The title of the advertised position.
+        data_tests:
+          - not_null
+      - name: company_name
+        description: Name of the hiring company.
+      - name: job_location
+        description: Geographic location of the job posting.
+      - name: job_via
+        description: Job board or platform where the posting was collected.
+      - name: job_schedule_type
+        description: Employment schedule type (e.g., Full-time, Contractor, Part-time).
+      - name: job_work_from_home
+        description: Boolean flag indicating whether the position is remote.
+      - name: search_date
+        description: Date when the job posting was scraped/searched.
+        data_tests:
+          - not_null
+      - name: search_term
+        description: Target role search query used to collect the posting.
+        data_tests:
+          - not_null
+
+  - name: jobs_per_month
+    description: Monthly count of job postings broken down by target data role.
+    config:
+      persist_docs:
+        relation: true
+        columns: true
+    columns:
+      - name: month
+        description: First day of the month based on search_date.
+        data_tests:
+          - not_null
+      - name: role
+        description: Target role category (e.g., data engineer, data analyst, data scientist).
+        data_tests:
+          - not_null
+      - name: postings
+        description: Total number of job postings for the given month and role.
+        data_tests:
+          - not_null
+
+  - name: top_locations
+    description: Top 10 job locations ranked by total volume of job postings.
+    config:
+      persist_docs:
+        relation: true
+        columns: true  
+    columns:
+      - name: job_location
+        description: Geographic location of the job postings.
+        data_tests:
+          - unique
+          - not_null
+      - name: postings
+        description: Total number of job postings in that location.
+        data_tests:
+          - not_null

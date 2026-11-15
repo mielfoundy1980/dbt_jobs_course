@@ -4,8 +4,15 @@ sources:
   - name: jobs_src
     database: jobs
     schema: main
+    description: Raw and reference job postings data from the external warehouse and local Parquet files.
     tables:
       - name: job_postings
+        description: One row per job-posting scrape.
+        meta:
+          external_location: '../data/raw/raw_job_postings_*.parquet'
       - name: top_locations
+        description: Reference table of top job posting locations.
       - name: jobs_per_month
+        description: Reference table of monthly job posting counts by role.
       - name: monthly_summary
+        description: Monthly aggregated summary of job postings.

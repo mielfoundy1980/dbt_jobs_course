@@ -8,5 +8,5 @@ SELECT
     job_work_from_home,
     search_date,
     search_term
-FROM '../data/raw/raw_job_postings_*.parquet'
+FROM {{ source('jobs_src', 'job_postings') }}
 WHERE error IS NULL
