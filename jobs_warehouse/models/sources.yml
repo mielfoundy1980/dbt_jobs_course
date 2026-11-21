@@ -8,8 +8,9 @@ sources:
     tables:
       - name: job_postings
         description: One row per job-posting scrape.
-        meta:
-          external_location: '../data/raw/raw_job_postings_*.parquet'
+        config:
+          meta:
+            external_location: '../data/raw/raw_job_postings_*.parquet'
       - name: top_locations
         description: Reference table of top job posting locations.
       - name: jobs_per_month
