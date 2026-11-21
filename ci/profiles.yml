@@ -1,0 +1,7 @@
+jobs_warehouse:
+  target: prod
+  outputs:
+    prod:
+      type: duckdb
+      path: ../jobs_warehouse/prod.duckdb
+      treads: 4
